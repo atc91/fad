@@ -40,9 +40,27 @@ Vamos a analizar entonces las variables numéricas para evaluar que tipo de prep
 ```{r}
 str(clientes)
 summary(clientes) 
-apply(clientes, 2, mean)
-apply(clientes, 2, var)
+apply(clientes[, -c(1)], 2, mean)
+apply(clientes[, -c(1)], 2, var)
 ```
+
+Se puede ver que la variables INGRESOS, PRECIO_DISPOSITIVO, DURACION y SALDO_RESTANTE tienen una alta variabilidad y valores medios alejados de los valores extremos. Lo cual sugiere que tenemos datos atipicos.
+
+
+### 2. La empresa considera que los valores de variables que estén a más de 4 desviaciones estándar del promedio deberían ser consideradas excepcionales, y por lo tanto no se deben considerar en los análisis. Identifíquelas y apártelas del dataset (0.3)
+
+Calculamos la desviacion estandar de cada variable.
+
+```{r}
+clientes_sd <- apply(clientes[, -c(1)], 2, sd)
+clientes_sd
+```
+
+```{r}
+clientes[ which(clientes$INGRESOS < 'F'
+& mydata$age > 65)
+```
+
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 

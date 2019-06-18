@@ -1780,20 +1780,49 @@ $(document).ready(function () {
 <h3>1. ¿Encuentra alguna anomalía en los datos? (0.3)</h3>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShjYXJldClcbmBgYCJ9 -->
-<pre class="r"><code>library(ggplot2)
-library(caret)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuYGBgIn0= -->
+<pre class="r"><code>library(ggplot2)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBsYXR0aWNlXG4ifQ== -->
-<pre><code>Loading required package: lattice</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdnZ3Bsb3QyJzpcbiAgbWV0aG9kICAgICAgICAgZnJvbSBcbiAgWy5xdW9zdXJlcyAgICAgcmxhbmdcbiAgYy5xdW9zdXJlcyAgICAgcmxhbmdcbiAgcHJpbnQucXVvc3VyZXMgcmxhbmdcblJlZ2lzdGVyZWQgUzMgbWV0aG9kIG92ZXJ3cml0dGVuIGJ5ICdkcGx5cic6XG4gIG1ldGhvZCAgICAgICAgICAgZnJvbVxuICBwcmludC5yb3d3aXNlX2RmICAgICBcbk5lZWQgaGVscCBnZXR0aW5nIHN0YXJ0ZWQ/IFRyeSB0aGUgY29va2Jvb2sgZm9yIFI6IGh0dHA6Ly93d3cuY29va2Jvb2stci5jb20vR3JhcGhzL1xuIn0= -->
+<pre><code>Registered S3 methods overwritten by &#39;ggplot2&#39;:
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by &#39;dplyr&#39;:
+  method           from
+  print.rowwise_df     
+Need help getting started? Try the cookbook for R: http://www.cookbook-r.com/Graphs/</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjb3JycGxvdClcbmxpYnJhcnkoZnBjKVxubGlicmFyeShjbHVzdGVyKVxubGlicmFyeShcImZhY3RvZXh0cmFcIilcbmxpYnJhcnkoZGF0YS50YWJsZSlcbmBgYCJ9 -->
-<pre class="r"><code>library(corrplot)
-library(fpc)
-library(cluster)
-library(&quot;factoextra&quot;)
-library(data.table)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjYXJldClcbmBgYCJ9 -->
+<pre class="r"><code>library(caret)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBsYXR0aWNlXG5SZWdpc3RlcmVkIFMzIG1ldGhvZCBvdmVyd3JpdHRlbiBieSAnZGF0YS50YWJsZSc6XG4gIG1ldGhvZCAgICAgICAgICAgZnJvbVxuICBwcmludC5kYXRhLnRhYmxlICAgICBcbiJ9 -->
+<pre><code>Loading required package: lattice
+Registered S3 method overwritten by &#39;data.table&#39;:
+  method           from
+  print.data.table     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjb3JycGxvdClcbmBgYCJ9 -->
+<pre class="r"><code>library(corrplot)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiY29ycnBsb3QgMC44NCBsb2FkZWRcbiJ9 -->
+<pre><code>corrplot 0.84 loaded</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShmcGMpXG5saWJyYXJ5KGNsdXN0ZXIpXG5saWJyYXJ5KFwiZmFjdG9leHRyYVwiKVxuYGBgIn0= -->
+<pre class="r"><code>library(fpc)
+library(cluster)
+library(&quot;factoextra&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2VsY29tZSEgUmVsYXRlZCBCb29rczogYFByYWN0aWNhbCBHdWlkZSBUbyBDbHVzdGVyIEFuYWx5c2lzIGluIFJgIGF0IGh0dHBzOi8vZ29vLmdsLzEzRUZDWlxuIn0= -->
+<pre><code>Welcome! Related Books: `Practical Guide To Cluster Analysis in R` at https://goo.gl/13EFCZ</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkYXRhLnRhYmxlKVxuYGBgIn0= -->
+<pre class="r"><code>library(data.table)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZGF0YS50YWJsZSAxLjEyLjIgdXNpbmcgNCB0aHJlYWRzIChzZWUgP2dldERUdGhyZWFkcykuICBMYXRlc3QgbmV3czogci1kYXRhdGFibGUuY29tXG4ifQ== -->
+<pre><code>data.table 1.12.2 using 4 threads (see ?getDTthreads).  Latest news: r-datatable.com</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -1802,7 +1831,7 @@ library(data.table)</code></pre>
 <pre class="r"><code>clientes &lt;- read.csv(&quot;PF-02-DatosTelco.csv&quot;, header = TRUE)
 head(clientes)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6OSwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJndHlpVERtaXVCaVlHQmdabUJtQTVLc1FDWURtM09Bb1pHcEVRTURDeE9ReDhqQXdzQUpvaXVBOHNKQUJwRER6QXRTQnNSTVVNeUloSm5RTkxMbHBKYWw1aFFEV1FKZ1dZZ29SNUJyaUdlUW80cy9sTThaNXVubkhPb0RFa0RWenBxY2sxZ00wdzAzTXkweHVTUy9DTWo2QjhRUTE5anBSakEwWGVsZzRGR05aS2krN001UTh5NmJJVytoSVZDT0R5VHZlQ3JnWUFLUTRYaUxZZWtFRUQxdFdUakl0NDZUVDc0RzAwZDBKUmVBNkoydXV4Z2dBS0xQak5NU0xPOVFwdGNBb3FVWHE0RDV6dDgzZ0dtVjRGVmdXbUdYQmxRZkxIU2tnRmdjaU5XQVdCV0loYUVZYks0RFV4b1lPUERPQklGWkRnWm5RT0NzZ3lHRUR6V0x3WUVSem9mb1V3czlJVGhCaVJFdVgvcnljQlZUU1loRHpsMjdpZTMvVWgwU0NzUGZQQzM3eUlBQUVIMG1QaER6dlE1QTlHbEQ3WE83Q2JFL0FNb1BRdFZuLzhka3A2N3BJWE1IcnNmM2wyOExudWVnc0lQRE5MQ0d5VUh4N2VUNWVlbEZEb3B6ejFxWFdsK3cvNy9HK3ZiVlY5WG8wWmVYbUpzS2l6NU9XUFM1Qm9jZ29wN0QwODg5eURYWVB4aktaM0YyREhhRXNvVUNnbHlkUGYzalhUeURBL3lEUFVNOHcyQzZXSDFkZzExaFdqaGNRb01jZ2VyOG9IeXVZSDhub0ViSElIZVljcjVnUng4WC8vZ2drTTErSWE1UVVaNWd4eERQWURkSFo3QmVWSmR6RnVXWDY4RmNENHBTcGdaSXNMQkJGREwvUjB1VVhDbUpKWWw2YVVWQUxaQ0VpV0ljZTM1QlNXWitIdEF3SmxBYVlFWFR6RmlFSnNCZm1nZXlQRVUzT2FNMEwxdlhDR1FCQXlLWDhVSnBOaVEySjhSS0ZwakRXR0hCblpxWG5wbVhDZ3U0bk1TazFCeFlzQUE5Q2ZhalhrRlJabDRKekNkQTBXSzlrdnlTUkpnNnJ1VDhISmdJSk5QOUF3RG9qOS9rUFFRQUFBPT0ifQ== -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6OSwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJndHlpVERtaXVCaVlHQmdabUJtQTVLc1FDWURtM09Bb1pHcEVRTURDeE9ReDhqQXdzQUpvaXVBOHNKQUJwRER6QXRTQnNSTVVNeUloSm5RTkxMbHBKYWw1aFFEV1FKZ1dZZ29SNUJyaUdlUW80cy9sTThaNXVubkhPb0RFa0RWenBxY2sxZ00wdzAzTXkweHVTUy9DTWo2QjhRUTE5anBSakEwWGVsZzRGR05aS2krN001UTh5NmJJVytoSVZDT0R5VHZlQ3JnWUFLUTRYaUxZZWtFRUQxdFdUakl0NDZUVDc0RzAwZDBKUmVBNkoydXV4Z2dBS0xQak5NU0xPOVFwdGNBb3FVWHE0RDV6dDgzZ0dtVjRGVmdXbUdYQmxRZkxIU2tnRmdjaU5XQVdCV0loYUVZYks0RFV4b1lPUERPQklGWkRnWm5RT0NzZ3lHRUR6V0x3WUVSem9mb1V3czlJVGhCaVJFdVgvcnljQlZUU1loRHpsMjdpZTMvVWgwU0NzUGZQQzM3eUlBQUVIMG1QaER6dlE1QTlHbEQ3WE83Q2JFL0FNb1BRdFZuLzhka3A2N3BJWE1IcnNmM2wyOExudWVnc0lQRE5MQ0d5VUh4N2VUNWVlbEZEb3B6ejFxWFdsK3cvNy9HK3ZiVlY5WG8wWmVYbUpzS2l6NU9XUFM1Qm9jZ29wN0QwODg5eURYWVB4aktaM0YyREhhRXNvVUNnbHlkUGYzalhUeURBL3lEUFVNOHcyQzZXSDFkZzExaFdqaGNRb01jZ2VyOG9IeXVZSDhub0ViSElIZVljcjVnUng4WC8vZ2drTTErSWE1UVVaNWd4eERQWURkSFo3QmVWSmR6RnVXWDY4RmNENHBTcGdaSXNMQkJGREwvUjB1VVhDbUpKWWw2YVVWQUxaQ0VpV0ljZTM1QlNXWitIdEF3SmxBYVlFWFR6RmlFSnNCZm1nZXlQRVUzT2FNMEwxdlhGR1FCQXlLWDhVSnBOaVEySjhSS0ZwakRXR0hCblpxWG5wbVhDZ3U0bk1TazFCeFlzQUE5Q2ZhalhrRlJabDRKekNkQTBXSzlrdnlTUkpnNnJ1VDhISmdJSk5QOUF3QkhaelFYUFFRQUFBPT0ifQ== -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["ESTADO"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["INGRESOS"],"name":[2],"type":["int"],"align":["right"]},{"label":["CASA"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["PRECIO_DISPOSITIVO"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["MESES"],"name":[5],"type":["int"],"align":["right"]},{"label":["DURACION"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["SOBRECARGO"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["SALDO_RESTANTE"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["SATISFACCION"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"VINCULADO","2":"4074840","3":"8.830e+08","4":"1444153","5":"26","6":"2.3","7":"11.16754","8":"20.3","9":"1.762872","_rn_":"1"},{"1":"VINCULADO","2":"8574088","3":"1.745e+09","4":"2157661","5":"23","6":"3.7","7":"0.00000","8":"53.5","9":"3.361266","_rn_":"2"},{"1":"RETIRADO","2":"795993","3":"9.500e+07","4":"452809","5":"38","6":"16.8","7":"350.61022","8":"13.9","9":"8.359438","_rn_":"3"},{"1":"RETIRADO","2":"8115015","3":"8.300e+07","4":"2617184","5":"37","6":"17.6","7":"230.91389","8":"45.7","9":"8.964017","_rn_":"4"},{"1":"RETIRADO","2":"8187499","3":"6.770e+08","4":"666069","5":"19","6":"0.0","7":"131.54198","8":"67.2","9":"8.808206","_rn_":"5"},{"1":"VINCULADO","2":"7250225","3":"4.240e+08","4":"548116","5":"19","6":"2.2","7":"0.00000","8":"72.0","9":"1.979549","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[9]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
@@ -1848,30 +1877,51 @@ head(clientes)</code></pre>
  3rd Qu.: 70.00   3rd Qu.:8.2682  
  Max.   :130.70   Max.   :9.6426  </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwbHkoY2xpZW50ZXMsIDIsIG1lYW4pXG5gYGAifQ== -->
-<pre class="r"><code>apply(clientes, 2, mean)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwbHkoY2xpZW50ZXNbLCAtYygxKV0sIDIsIG1lYW4pXG5gYGAifQ== -->
+<pre class="r"><code>apply(clientes[, -c(1)], 2, mean)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BYXJndW1lbnQgaXMgbm90IG51bWVyaWMgb3IgbG9naWNhbDogcmV0dXJuaW5nIE5BXG4ifQ== -->
-<pre><code>argument is not numeric or logical: returning NAargument is not numeric or logical: returning NAargument is not numeric or logical: returning NAargument is not numeric or logical: returning NAargument is not numeric or logical: returning NAargument is not numeric or logical: returning NAargument is not numeric or logical: returning NAargument is not numeric or logical: returning NAargument is not numeric or logical: returning NA</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgIElOR1JFU09TICAgICAgICAgICAgICAgQ0FTQSBQUkVDSU9fRElTUE9TSVRJVk8gICAgICAgICAgICAgIE1FU0VTICAgICAgICAgICBEVVJBQ0lPTiAgICAgICAgIFNPQlJFQ0FSR08gICAgIFNBTERPX1JFU1RBTlRFIFxuICAgICAgNC44MTMxMTVlKzA2ICAgICAgIDcuMTYxNDM1ZSswOCAgICAgICAxLjMxNTM0MGUrMDYgICAgICAgMi40MTk3MTNlKzAxICAgICAgIDkuNjA5ODUyZSswMCAgICAgICAxLjEwMDU2M2UrMDIgICAgICAgNC4yOTkxODllKzAxIFxuICAgICAgU0FUSVNGQUNDSU9OIFxuICAgICAgNS40ODA4NDBlKzAwIFxuIn0= -->
+<pre><code>          INGRESOS               CASA PRECIO_DISPOSITIVO              MESES           DURACION         SOBRECARGO     SALDO_RESTANTE 
+      4.813115e+06       7.161435e+08       1.315340e+06       2.419713e+01       9.609852e+00       1.100563e+02       4.299189e+01 
+      SATISFACCION 
+      5.480840e+00 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgRVNUQURPICAgICAgICAgICBJTkdSRVNPUyAgICAgICAgICAgICAgIENBU0EgUFJFQ0lPX0RJU1BPU0lUSVZPICAgICAgICAgICAgICBNRVNFUyAgICAgICAgICAgRFVSQUNJT04gICAgICAgICBTT0JSRUNBUkdPIFxuICAgICAgICAgICAgICAgIE5BICAgICAgICAgICAgICAgICBOQSAgICAgICAgICAgICAgICAgTkEgICAgICAgICAgICAgICAgIE5BICAgICAgICAgICAgICAgICBOQSAgICAgICAgICAgICAgICAgTkEgICAgICAgICAgICAgICAgIE5BIFxuICAgIFNBTERPX1JFU1RBTlRFICAgICAgIFNBVElTRkFDQ0lPTiBcbiAgICAgICAgICAgICAgICBOQSAgICAgICAgICAgICAgICAgTkEgXG4ifQ== -->
-<pre><code>            ESTADO           INGRESOS               CASA PRECIO_DISPOSITIVO              MESES           DURACION         SOBRECARGO 
-                NA                 NA                 NA                 NA                 NA                 NA                 NA 
-    SALDO_RESTANTE       SATISFACCION 
-                NA                 NA </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwbHkoY2xpZW50ZXMsIDIsIHZhcilcbmBgYCJ9 -->
-<pre class="r"><code>apply(clientes, 2, var)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXBwbHkoY2xpZW50ZXNbLCAtYygxKV0sIDIsIHZhcilcbmBgYCJ9 -->
+<pre class="r"><code>apply(clientes[, -c(1)], 2, var)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTkFzIGludHJvZHVjZWQgYnkgY29lcmNpb25cbiJ9 -->
-<pre><code>NAs introduced by coercion</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgIElOR1JFU09TICAgICAgICAgICAgICAgQ0FTQSBQUkVDSU9fRElTUE9TSVRJVk8gICAgICAgICAgICAgIE1FU0VTICAgICAgICAgICBEVVJBQ0lPTiAgICAgICAgIFNPQlJFQ0FSR08gICAgIFNBTERPX1JFU1RBTlRFIFxuICAgICAgNy40OTMyMTZlKzEyICAgICAgIDIuMzE1MTAzZSsxNyAgICAgICA1LjYwMzU3MWUrMTEgICAgICAgMi4wMzQ2MjFlKzAyICAgICAgIDQuOTU2MTcwZSswMSAgICAgICAxLjAxNTQ5MGUrMDQgICAgICAgOS4xMjMxNDJlKzAyIFxuICAgICAgU0FUSVNGQUNDSU9OIFxuICAgICAgNy44OTU3NDllKzAwIFxuIn0= -->
+<pre><code>          INGRESOS               CASA PRECIO_DISPOSITIVO              MESES           DURACION         SOBRECARGO     SALDO_RESTANTE 
+      7.493216e+12       2.315103e+17       5.603571e+11       2.034621e+02       4.956170e+01       1.015490e+04       9.123142e+02 
+      SATISFACCION 
+      7.895749e+00 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgRVNUQURPICAgICAgICAgICBJTkdSRVNPUyAgICAgICAgICAgICAgIENBU0EgUFJFQ0lPX0RJU1BPU0lUSVZPICAgICAgICAgICAgICBNRVNFUyAgICAgICAgICAgRFVSQUNJT04gICAgICAgICBTT0JSRUNBUkdPIFxuICAgICAgICAgICAgICAgIE5BICAgICAgIDcuNDkzMjE2ZSsxMiAgICAgICAyLjMxNTEwM2UrMTcgICAgICAgNS42MDM1NzFlKzExICAgICAgIDIuMDM0NjIxZSswMiAgICAgICA0Ljk1NjE3MGUrMDEgICAgICAgMS4wMTU0OTBlKzA0IFxuICAgIFNBTERPX1JFU1RBTlRFICAgICAgIFNBVElTRkFDQ0lPTiBcbiAgICAgIDkuMTIzMTQyZSswMiAgICAgICA3Ljg5NTc0OWUrMDAgXG4ifQ== -->
-<pre><code>            ESTADO           INGRESOS               CASA PRECIO_DISPOSITIVO              MESES           DURACION         SOBRECARGO 
-                NA       7.493216e+12       2.315103e+17       5.603571e+11       2.034621e+02       4.956170e+01       1.015490e+04 
-    SALDO_RESTANTE       SATISFACCION 
-      9.123142e+02       7.895749e+00 </code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Se puede ver que la variables INGRESOS, PRECIO_DISPOSITIVO, DURACION y SALDO_RESTANTE tienen una alta variabilidad y valores medios alejados de los valores extremos. Lo cual sugiere que tenemos datos atipicos.</p>
+</div>
+<div id="la-empresa-considera-que-los-valores-de-variables-que-esten-a-mas-de-4-desviaciones-estandar-del-promedio-deberian-ser-consideradas-excepcionales-y-por-lo-tanto-no-se-deben-considerar-en-los-analisis.-identifiquelas-y-apartelas-del-dataset-0.3" class="section level3">
+<h3>2. La empresa considera que los valores de variables que estén a más de 4 desviaciones estándar del promedio deberían ser consideradas excepcionales, y por lo tanto no se deben considerar en los análisis. Identifíquelas y apártelas del dataset (0.3)</h3>
+<p>Calculamos la desviacion estandar de cada variable.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xpZW50ZXNfc2RcblxuYGBgIn0= -->
+<pre class="r"><code>clientes_sd
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgIElOR1JFU09TICAgICAgICAgICAgICAgQ0FTQSBQUkVDSU9fRElTUE9TSVRJVk8gICAgICAgICAgICAgIE1FU0VTICAgICAgICAgICBEVVJBQ0lPTiAgICAgICAgIFNPQlJFQ0FSR08gICAgIFNBTERPX1JFU1RBTlRFIFxuICAgICAgMi43MzczNzRlKzA2ICAgICAgIDQuODExNTUxZSswOCAgICAgICA3LjQ4NTcwMGUrMDUgICAgICAgMS40MjY0MDFlKzAxICAgICAgIDcuMDQwMDA3ZSswMCAgICAgICAxLjAwNzcxNWUrMDIgICAgICAgMy4wMjA0NTRlKzAxIFxuICAgICAgU0FUSVNGQUNDSU9OIFxuICAgICAgMi44MDk5MzhlKzAwIFxuIn0= -->
+<pre><code>          INGRESOS               CASA PRECIO_DISPOSITIVO              MESES           DURACION         SOBRECARGO     SALDO_RESTANTE 
+      2.737374e+06       4.811551e+08       7.485700e+05       1.426401e+01       7.040007e+00       1.007715e+02       3.020454e+01 
+      SATISFACCION 
+      2.809938e+00 </code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xpZW50ZXNbIHdoaWNoKGNsaWVudGVzJElOR1JFU09TIDwgJ0YnXG4mIG15ZGF0YSRhZ2UgPiA2NSlcbmBgYCJ9 -->
+<pre class="r"><code>clientes[ which(clientes$INGRESOS &lt; &#39;F&#39;
+&amp; mydata$age &gt; 65)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
@@ -1882,7 +1932,7 @@ head(clientes)</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByb3llY3RvIEZpbmFsIEZ1bmRhbWVudG9zIGRlIEFuYWzDrXRpY2EiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIFByb2JsZW1hDQoNClVzdGVkIGVzIGVsIGVuY2FyZ2FkbyBkZSBhbmFsw610aWNhIGRlIHVuYSBlbXByZXNhIGRlIHRlbGVmb27DrWEgY2VsdWxhciB5IHRpZW5lIHF1ZSBwcm9wb3JjaW9uYXIgc29sdWNpb25lcyBwYXJhIGhhY2VyIGZyZW50ZSBhIGxhcyBwcm9ibGVtw6F0aWNhcyBkZSB1biBzZWN0b3IgcXVlIGhhIGxsZWdhZG8gYSBzYXR1cmFjacOzbiBkZWwgbWVyY2Fkby4gVGFudG8gc3UgZW1wcmVzYSBjb21vIHN1cyBjb21wZXRpZG9yZXMgZGlyZWN0b3MgdGllbmVuIHF1ZSBkaXNwdXRhcnNlIHBvciB1bmEgYmFzZSBkZSBjbGllbnRlcyBsaW1pdGFkYSwgZGUgdGFsIGZvcm1hIHF1ZSB1c3RlZCB0aWVuZSBxdWUgcmVzcG9uZGVyIGEgdW4gb2JqZXRpdm8gZXN0cmF0w6lnaWNvIGRlZmluaWRvIHBvciBsYSBkaXJlY2Npw7NuIGFzw606IA0KDQrigJxNYW50ZW5lciB5IGZpZGVsaXphciBhIG51ZXN0cm9zIGNsaWVudGVzIHBvciBtZWRpbyBkZSB1biBzZXJ2aWNpbyBkZSBjYWxpZGFkIHF1ZSBzZSBhZGFwdGUgYSBzdXMgbmVjZXNpZGFkZXMgcGFydGljdWxhcmVzLuKAnQ0KDQpTdSBjb21wYcOxw61hIGRpc3BvbmUgZGUgdW5hIGJhc2UgZGUgZGF0b3MgaGlzdMOzcmljYSBkZSBwZXJzb25hcyBxdWUgaGFjZSB1biBhw7FvIGVyYW4gY2xpZW50ZXMgcHJvcGlvcy4gQWxndW5vcyBkZSBlc29zIGNsaWVudGVzIHNpZ3VlbiBzacOpbmRvbG8gaG95IGVuIGTDrWEsIG90cm9zIHlhIG5vIGxvIHNvbi4NCg0KU2UgaGFuIGlkZW50aWZpY2FkbyBkb3MgcHJveWVjdG9zIGRlIGFuYWzDrXRpY2EgZGUgZGF0b3MgcXVlIHBlcm1pdGlyw6FuIGFsY2FuemFyIHRhbCBvYmpldGl2bywgcXVlIHRlbmRyw6EgcXVlIGRlc2Fycm9sbGFyIGVuIGxhcyBkb3MgcGFydGVzIHNpZ3VpZW50ZXMuIA0KDQoNCiMjIFBhcnRlIDENCg0KQ3JlZSB1biBtb2RlbG8gcHJlZGljdGl2byBkZSBkZXNlcmNpw7NuIHF1ZSBwZXJtaXRhIGlkZW50aWZpY2FyIGxvcyBjbGllbnRlcyBwcm9wZW5zb3MgYSBpcnNlIGEgbGFzIGVtcHJlc2FzIGVuIGRpcmVjdGEgY29tcGV0ZW5jaWEgY29uIGxhIHN1eWEgZW4gZWwgcHLDs3hpbW8gYcOxby4NCg0KIyMjIDEuIMK/RW5jdWVudHJhIGFsZ3VuYSBhbm9tYWzDrWEgZW4gbG9zIGRhdG9zPyAoMC4zKQ0KDQoNCmBgYHtyfQ0KbGlicmFyeShnZ3Bsb3QyKQ0KbGlicmFyeShjYXJldCkNCmxpYnJhcnkoY29ycnBsb3QpDQpsaWJyYXJ5KGZwYykNCmxpYnJhcnkoY2x1c3RlcikNCmxpYnJhcnkoImZhY3RvZXh0cmEiKQ0KbGlicmFyeShkYXRhLnRhYmxlKQ0KYGBgDQoNCmBgYHtyfQ0KY2xpZW50ZXMgPC0gcmVhZC5jc3YoIlBGLTAyLURhdG9zVGVsY28uY3N2IiwgaGVhZGVyID0gVFJVRSkNCmhlYWQoY2xpZW50ZXMpDQpgYGANCg0KVmFtb3MgYSBhbmFsaXphciBlbnRvbmNlcyBsYXMgdmFyaWFibGVzIG51bcOpcmljYXMgcGFyYSBldmFsdWFyIHF1ZSB0aXBvIGRlIHByZXByb2Nlc2FtaWVudG9zIGRlYmVtb3MgaGFjZXIgcGFyYSBubyBpbmZsdWVuY2lhciBkZSBtYW5lcmEgaW5hZGVjdWFkYSBsb3MgYW7DoWxpc2lzIHF1ZSByZWFsaXphcmVtb3MuDQpgYGB7cn0NCnN0cihjbGllbnRlcykNCnN1bW1hcnkoY2xpZW50ZXMpIA0KYXBwbHkoY2xpZW50ZXMsIDIsIG1lYW4pDQphcHBseShjbGllbnRlcywgMiwgdmFyKQ0KYGBgDQoNCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDdHJsK0FsdCtJKi4NCg0KV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByb3llY3RvIEZpbmFsIEZ1bmRhbWVudG9zIGRlIEFuYWzDrXRpY2EiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIFByb2JsZW1hDQoNClVzdGVkIGVzIGVsIGVuY2FyZ2FkbyBkZSBhbmFsw610aWNhIGRlIHVuYSBlbXByZXNhIGRlIHRlbGVmb27DrWEgY2VsdWxhciB5IHRpZW5lIHF1ZSBwcm9wb3JjaW9uYXIgc29sdWNpb25lcyBwYXJhIGhhY2VyIGZyZW50ZSBhIGxhcyBwcm9ibGVtw6F0aWNhcyBkZSB1biBzZWN0b3IgcXVlIGhhIGxsZWdhZG8gYSBzYXR1cmFjacOzbiBkZWwgbWVyY2Fkby4gVGFudG8gc3UgZW1wcmVzYSBjb21vIHN1cyBjb21wZXRpZG9yZXMgZGlyZWN0b3MgdGllbmVuIHF1ZSBkaXNwdXRhcnNlIHBvciB1bmEgYmFzZSBkZSBjbGllbnRlcyBsaW1pdGFkYSwgZGUgdGFsIGZvcm1hIHF1ZSB1c3RlZCB0aWVuZSBxdWUgcmVzcG9uZGVyIGEgdW4gb2JqZXRpdm8gZXN0cmF0w6lnaWNvIGRlZmluaWRvIHBvciBsYSBkaXJlY2Npw7NuIGFzw606IA0KDQrigJxNYW50ZW5lciB5IGZpZGVsaXphciBhIG51ZXN0cm9zIGNsaWVudGVzIHBvciBtZWRpbyBkZSB1biBzZXJ2aWNpbyBkZSBjYWxpZGFkIHF1ZSBzZSBhZGFwdGUgYSBzdXMgbmVjZXNpZGFkZXMgcGFydGljdWxhcmVzLuKAnQ0KDQpTdSBjb21wYcOxw61hIGRpc3BvbmUgZGUgdW5hIGJhc2UgZGUgZGF0b3MgaGlzdMOzcmljYSBkZSBwZXJzb25hcyBxdWUgaGFjZSB1biBhw7FvIGVyYW4gY2xpZW50ZXMgcHJvcGlvcy4gQWxndW5vcyBkZSBlc29zIGNsaWVudGVzIHNpZ3VlbiBzacOpbmRvbG8gaG95IGVuIGTDrWEsIG90cm9zIHlhIG5vIGxvIHNvbi4NCg0KU2UgaGFuIGlkZW50aWZpY2FkbyBkb3MgcHJveWVjdG9zIGRlIGFuYWzDrXRpY2EgZGUgZGF0b3MgcXVlIHBlcm1pdGlyw6FuIGFsY2FuemFyIHRhbCBvYmpldGl2bywgcXVlIHRlbmRyw6EgcXVlIGRlc2Fycm9sbGFyIGVuIGxhcyBkb3MgcGFydGVzIHNpZ3VpZW50ZXMuIA0KDQoNCiMjIFBhcnRlIDENCg0KQ3JlZSB1biBtb2RlbG8gcHJlZGljdGl2byBkZSBkZXNlcmNpw7NuIHF1ZSBwZXJtaXRhIGlkZW50aWZpY2FyIGxvcyBjbGllbnRlcyBwcm9wZW5zb3MgYSBpcnNlIGEgbGFzIGVtcHJlc2FzIGVuIGRpcmVjdGEgY29tcGV0ZW5jaWEgY29uIGxhIHN1eWEgZW4gZWwgcHLDs3hpbW8gYcOxby4NCg0KIyMjIDEuIMK/RW5jdWVudHJhIGFsZ3VuYSBhbm9tYWzDrWEgZW4gbG9zIGRhdG9zPyAoMC4zKQ0KDQoNCmBgYHtyfQ0KbGlicmFyeShnZ3Bsb3QyKQ0KbGlicmFyeShjYXJldCkNCmxpYnJhcnkoY29ycnBsb3QpDQpsaWJyYXJ5KGZwYykNCmxpYnJhcnkoY2x1c3RlcikNCmxpYnJhcnkoImZhY3RvZXh0cmEiKQ0KbGlicmFyeShkYXRhLnRhYmxlKQ0KYGBgDQoNCmBgYHtyfQ0KY2xpZW50ZXMgPC0gcmVhZC5jc3YoIlBGLTAyLURhdG9zVGVsY28uY3N2IiwgaGVhZGVyID0gVFJVRSkNCmhlYWQoY2xpZW50ZXMpDQpgYGANCg0KVmFtb3MgYSBhbmFsaXphciBlbnRvbmNlcyBsYXMgdmFyaWFibGVzIG51bcOpcmljYXMgcGFyYSBldmFsdWFyIHF1ZSB0aXBvIGRlIHByZXByb2Nlc2FtaWVudG9zIGRlYmVtb3MgaGFjZXIgcGFyYSBubyBpbmZsdWVuY2lhciBkZSBtYW5lcmEgaW5hZGVjdWFkYSBsb3MgYW7DoWxpc2lzIHF1ZSByZWFsaXphcmVtb3MuDQpgYGB7cn0NCnN0cihjbGllbnRlcykNCnN1bW1hcnkoY2xpZW50ZXMpIA0KYXBwbHkoY2xpZW50ZXNbLCAtYygxKV0sIDIsIG1lYW4pDQphcHBseShjbGllbnRlc1ssIC1jKDEpXSwgMiwgdmFyKQ0KYGBgDQoNClNlIHB1ZWRlIHZlciBxdWUgbGEgdmFyaWFibGVzIElOR1JFU09TLCBQUkVDSU9fRElTUE9TSVRJVk8sIERVUkFDSU9OIHkgU0FMRE9fUkVTVEFOVEUgdGllbmVuIHVuYSBhbHRhIHZhcmlhYmlsaWRhZCB5IHZhbG9yZXMgbWVkaW9zIGFsZWphZG9zIGRlIGxvcyB2YWxvcmVzIGV4dHJlbW9zLiBMbyBjdWFsIHN1Z2llcmUgcXVlIHRlbmVtb3MgZGF0b3MgYXRpcGljb3MuDQoNCg0KIyMjIDIuIExhIGVtcHJlc2EgY29uc2lkZXJhIHF1ZSBsb3MgdmFsb3JlcyBkZSB2YXJpYWJsZXMgcXVlIGVzdMOpbiBhIG3DoXMgZGUgNCBkZXN2aWFjaW9uZXMgZXN0w6FuZGFyIGRlbCBwcm9tZWRpbyBkZWJlcsOtYW4gc2VyIGNvbnNpZGVyYWRhcyBleGNlcGNpb25hbGVzLCB5IHBvciBsbyB0YW50byBubyBzZSBkZWJlbiBjb25zaWRlcmFyIGVuIGxvcyBhbsOhbGlzaXMuIElkZW50aWbDrXF1ZWxhcyB5IGFww6FydGVsYXMgZGVsIGRhdGFzZXQgKDAuMykNCg0KQ2FsY3VsYW1vcyBsYSBkZXN2aWFjaW9uIGVzdGFuZGFyIGRlIGNhZGEgdmFyaWFibGUuDQoNCmBgYHtyfQ0KY2xpZW50ZXNfc2QgPC0gYXBwbHkoY2xpZW50ZXNbLCAtYygxKV0sIDIsIHNkKQ0KY2xpZW50ZXNfc2QNCmBgYA0KDQpgYGB7cn0NCmNsaWVudGVzWyB3aGljaChjbGllbnRlcyRJTkdSRVNPUyA8ICdGJw0KJiBteWRhdGEkYWdlID4gNjUpDQpgYGANCg0KDQpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCtBbHQrSSouDQoNCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ3RybCtTaGlmdCtLKiB0byBwcmV2aWV3IHRoZSBIVE1MIGZpbGUpLg0KDQpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuDQo=</div>
 
 
 
