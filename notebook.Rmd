@@ -1,0 +1,27 @@
+---
+title: "Proyecto Final Fundamentos de Analítica"
+output: html_notebook
+---
+
+# Problema
+
+Usted es el encargado de analítica de una empresa de telefonía celular y tiene que proporcionar soluciones para hacer frente a las problemáticas de un sector que ha llegado a saturación del mercado. Tanto su empresa como sus competidores directos tienen que disputarse por una base de clientes limitada, de tal forma que usted tiene que responder a un objetivo estratégico definido por la dirección así: 
+
+“Mantener y fidelizar a nuestros clientes por medio de un servicio de calidad que se adapte a sus necesidades particulares.”
+
+Su compañía dispone de una base de datos histórica de personas que hace un año eran clientes propios. Algunos de esos clientes siguen siéndolo hoy en día, otros ya no lo son.
+
+Se han identificado dos proyectos de analítica de datos que permitirán alcanzar tal objetivo, que tendrá que desarrollar en las dos partes siguientes. 
+
+
+## Parte 1
+
+Cree un modelo predictivo de deserción que permita identificar los clientes propensos a irse a las empresas en directa competencia con la suya en el próximo año.
+
+### 1. ¿Encuentra alguna anomalía en los datos? (0.3)
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
