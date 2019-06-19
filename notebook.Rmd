@@ -244,7 +244,7 @@ retirados = clientes[-c(indicesAQuitar), ][which(clientes$ESTADO == "RETIRADO"),
 retirados
 ```
 
-((Este numero tenemos que validarlo con el cluster que den los mecanismos de clustering))
+El numero de campañas a realizar es 4. Este numero se destermino luego de realizar el punto 3 y 4 que se detallaran a continuacion.
 
 ### 2. Extraiga los componentes principales, analice sus niveles de varianza explicada, e interprete los 3 más importantes en función de las variables originales. (0.6)
 
