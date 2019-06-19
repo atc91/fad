@@ -238,6 +238,12 @@ Analice los clientes que se han ido, creando un modelo de segmentación de los c
 
 ### 1. Definicion del numero de campañas a realizar (0.6)
 
+Extraemos los clientes retirados del dataset y removemos la columna de estado puesto que no nos interesa para nuestro analisis
+```{r}
+retirados = clientes[-c(indicesAQuitar), ][which(clientes$ESTADO == "RETIRADO"), -c(1)]
+retirados
+```
+
 ((Este numero tenemos que validarlo con el cluster que den los mecanismos de clustering))
 
 ### 2. Extraiga los componentes principales, analice sus niveles de varianza explicada, e interprete los 3 más importantes en función de las variables originales. (0.6)
