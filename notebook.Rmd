@@ -143,5 +143,88 @@ componentes principales se pueda tene un modelo con poca perdida de información
 
 #### a. Defina el protocolo de evaluación que va a utilizar para calibrar los modelos y estimar la calidad del modelo final. (0.3)
 
+Vamos a particionar aleatoriamente "a mano" el dataset, sacando una muestra aleatoria del 75% de los datos (17369 registros) para el entrenamiento y el resto para el test con la función createDataPartition de Caret. Inicializamos el generador aleatorio para poder garantizar reproducibilidad.
+```{r}
+set.seed(3456) 
+trainIndex <- createDataPartition(clientes[-indicesAQuitar,]$ESTADO, p = .75, list = FALSE, times = 1)
+
+train <- clientes[ trainIndex,]
+test <-  clientes[-trainIndex,]
+```
 
 
+El protocolo de evaluacion del modelo va a ser repeated K-Fold cross-validation
+
+```{r}
+cctrl <- trainControl(method="repeatedcv", 
+                      repeats=5, 
+                      number=5, 
+                      summaryFunction = twoClassSummary,
+                      classProbs = TRUE )
+```
+
+#### b. Establezca las métricas que va a utilizar, justificando su escogencia (0.2)
+
+Queremos identificar los clientes mas propensos a irse a la competencia directa de la empresa, por tanto es mas costoso decir que el cliente permanece VINCULADO cuando en realidad se RETIRA que decir que el cliente se RETIRA cuando permanece VINCULADO. 
+
+Entonces queremos optimizar el modelo para que identifique lo mejor posible los verdaderos negativos(RETIRA) y la metrica que vamos a usar es la specificity especificidad.
+
+#### c. Calibre 3 tipos de modelos diferentes: K-NN, árbol de decisión y algún otro que propongan, utilizando las métricas y protocolo definido (1.0)
+
+```{r}
+library(MASS)
+```
+
+
+Modelo KNN
+```{r}
+model_knn <- train(ESTADO ~., data = train,
+                     method = "knn", 
+                     trControl = cctrl,
+                     preProcess=c("center", "scale"),
+                     tuneGrid=expand.grid(k=c(15, 25, 35, 45, 55, 65, 75, 85)),
+                     metric="Spec")
+model_knn
+```
+Modelo 2
+```{r}
+model_rpart <- train(ESTADO ~., data = train,
+                     method = "rpart", 
+                     trControl = cctrl,
+                     preProcess=c("center", "scale"),
+                     metric="Spec")
+model_rpart
+```
+
+Modelo regresión logística
+
+```{r}
+model_glm <- train(ESTADO ~., data = train,
+                   method = "glmStepAIC",
+                   trControl = cctrl,
+                   preProcess=c("center", "scale"),
+                   metric="Spec")
+model_glm
+```
+#### d. Evalúe los 3 modelos encontrados, escoja el mejor, explicando y concluyendo lo que encontró, utilizando las métricas y protocolo definido (0.5)
+
+Modelo KNN
+```{r}
+predictions_knn<-predict(object=model_knn, test)
+confusionMatrix(predictions_knn, test$ESTADO)
+```
+
+Modelo arbol de desicion
+```{r}
+predictions_rpart<-predict(object=model_rpart, test)
+confusionMatrix(predictions_rpart, test$ESTADO)
+``` 
+
+Modelo regresion logistica
+```{r}
+predictions_glm<-predict(object=model_glm, test)
+confusionMatrix(predictions_glm, test$ESTADO)
+```
+
+Los 3 modelos tienen resultados similares tanto en especifidad como en Accuracy y Kappa.
+Por velocidad en entraneamiento, evaluacion, recalibracion automatica escogemos el modelo de regresion logistica como el mas adecuado.
