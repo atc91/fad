@@ -28,8 +28,10 @@ library(caret)
 library(corrplot)
 library(fpc)
 library(cluster)
-library("factoextra")
 library(data.table)
+library(reshape2)
+#library(tidyverse)  # data manipulation
+library(factoextra) # clustering algorithms & visualization
 ```
 
 ```{r}
@@ -60,7 +62,7 @@ head(clientes_std)
 ggplot(stack(clientes_std), aes(x = ind, y = values)) + geom_boxplot(aes(fill=ind))
 
 ```
-Podemos ver que en las variables CASA, PRECIO_DISPOSITIVO y MESES presentan valores atipicios.
+Podemos ver que en las variables CASA, PRECIO_DISPOSITIVO y MESES presentan valores atipicios. Pero estos valores atipicos pueden estar fuertemente correlacionados con la posibilidad de que sea un cliente satisfecho con el servicio, pues el consumira el mejor paquete de servicio.
 
 ### 2. La empresa considera que los valores de variables que estén a más de 4 desviaciones estándar del promedio deberían ser consideradas excepcionales, y por lo tanto no se deben considerar en los análisis. Identifíquelas y apártelas del dataset (0.3)
 
@@ -77,7 +79,7 @@ means = apply(clientes_std[, -c(1)], 2, mean)
 means
 ```
 
-Para encontrar los outliers basta con saber cuales superan de maginutud 4 veces la media de cada variable
+Para encontrar los outliers basta con saber cuales superan de maginutud 4 veces la media de cada variable, esto es posible porque como los datos normalizados tienen un varianza de 1, por tanto la media +- desv*4 => media +- raiz(1)*4 => media +- 4. 
 
 ```{r}
 indicesAQuitarNuevos <- which( abs(clientes_std$PRECIO_DISPOSITIVO) > means["PRECIO_DISPOSITIVO"] + 4)
@@ -142,6 +144,66 @@ componentes principales se pueda tene un modelo con poca perdida de información
 ### 4. Debe entrenar 3 tipos de modelos predictivos de diferentes familias:
 
 #### a. Defina el protocolo de evaluación que va a utilizar para calibrar los modelos y estimar la calidad del modelo final. (0.3)
+
+## Parte 2
+
+Analice los clientes que se han ido, creando un modelo de segmentación de los clientes que desertan la compañía, teniendo en cuenta sus datos socio-demográficos y comportamientos de consumo del servicio de telefonía. Interpretar el perfil de clientes asignado a cada segmento, caracterizándolos de tal manera que le permita sugerir 3 a 5 campañas de fidelización.
+
+### 1. Definicion del numero de campañas a realizar (0.6)
+
+((Este numero tenemos que validarlo con el cluster que den los mecanismos de clustering))
+
+### 2. Extraiga los componentes principales, analice sus niveles de varianza explicada, e interprete los 3 más importantes en función de las variables originales. (0.6)
+
+Para extraer los componentes principales vamos a utilizar los datos normalizados, porque la tecnica PCA se ve afectada por la distancia. Ademas vamos a quitar la columna que indica si se encuentra vinculado o no. Por lo tanto el resultado de extraer los componentes principales es:
+
+```{r}
+clientes_std$ESTADO <- NULL # Eliminamos la columna que indica si se encuentra vinculado o no
+pcomp <- prcomp(clientes_std, scale=TRUE)
+```
+
+Ahora vamoa analizar la varianza de los componenetes principales que entrego el analisis.
+```{r}
+varianzasPC <- pcomp$sdev^2
+varianzasPC
+totalPC <- sum(varianzasPC)
+porcentajeInfoPC <- varianzasPC / sum(varianzasPC)
+porcentajeInfoPC
+print("cantidad de componentes principales")
+totalPC
+```
+Como podemos observar salen 8 componentes principales que a su vez representan la informacion de la siguiente forma:
+
+```{r}
+dfPorcentajes = data.frame(PC=1:8, simple=porcentajeInfoPC, acumulado=cumsum(porcentajeInfoPC))
+dfPorcentajes
+```
+
+Como podemos ver solo hasta el quinto componente principal podemos decir que la informacion se representa en un 87.5%, lo cual indica que las variables no estan muy correlacionadas entre si. 
+
+((( FALTA HACER LA RELACION CON LAS VARIABLES )))
+```{r}
+
+```
+
+### 3. Compare de los clusters obtenidos utilizando K-Means y Clustering jerárquico, seleccionando los resultados de uno de los dos métodos. Justifique. (0.4)
+
+### K-Means
+
+Este es el proceso para obtener los cluster con K-Means
+
+```{r}
+k <- 3
+set.seed(1234)
+kmClustering3 <- kmeans(clientes_std, k, nstart=100, iter.max=150)
+```
+
+
+```{r}
+fviz_cluster(kmClustering3, data = clientes_std)
+```
+
+
 
 
 
