@@ -21,49 +21,179 @@ Cree un modelo predictivo de deserción que permita identificar los clientes pro
 ### 1. ¿Encuentra alguna anomalía en los datos? (0.3)
 
 
+
 ```{r}
 library(ggplot2)
+
 library(caret)
+
 library(corrplot)
+
 library(fpc)
+
 library(cluster)
+
 library("factoextra")
+
 library(data.table)
+
 ```
 
 ```{r}
-clientes <- read.csv("PF-02-DatosTelco.csv", header = TRUE)
+clientes <- data.frame(read.csv("PF-02-DatosTelco.csv", header = TRUE)
+                       )
+
 head(clientes)
+
 ```
 
 Vamos a analizar entonces las variables numéricas para evaluar que tipo de preprocesamientos debemos hacer para no influenciar de manera inadecuada los análisis que realizaremos.
 ```{r}
 str(clientes)
-summary(clientes) 
-apply(clientes[, -c(1)], 2, mean)
-apply(clientes[, -c(1)], 2, var)
+
+summary(clientes)
+
+apply(clientes[, -c(1)
+               ], 2, mean)
+
+apply(clientes[, -c(1)
+               ], 2, var)
+
 ```
 
-Se puede ver que la variables INGRESOS, PRECIO_DISPOSITIVO, DURACION y SALDO_RESTANTE tienen una alta variabilidad y valores medios alejados de los valores extremos. Lo cual sugiere que tenemos datos atipicos.
+Podemos ver que las variables tienen promedios muy diferentes, que impedirán a los algoritmos de clustering (basados en distancia)
+encontrar estructuras adecuadas. Además, podemos ver también que las varianzas son muy diferentes, lo que influenciaría negativamente la búsqueda de los componente principales de PCA, que se basa en la dispersión de los datos. Vamos entonces a estandarizar los datos para arreglar estos problemas.
 
+```{r}
+modelo_std<- preProcess(clientes, method = c("center", "scale")
+                        )
+
+clientes_std <- predict(modelo_std, clientes)
+
+head(clientes_std)
+
+```
+
+
+```{r}
+ggplot(stack(clientes_std)
+       , aes(x = ind, y = values)
+       )
++ geom_boxplot(aes(fill=ind)
+                                                                     )
+
+```
+Podemos ver que en las variables CASA, PRECIO_DISPOSITIVO y MESES presentan valores atipicios.
 
 ### 2. La empresa considera que los valores de variables que estén a más de 4 desviaciones estándar del promedio deberían ser consideradas excepcionales, y por lo tanto no se deben considerar en los análisis. Identifíquelas y apártelas del dataset (0.3)
 
-Calculamos la desviacion estandar de cada variable.
+
+Como todos los datos estan estandarizados, su varianza es 1:
 
 ```{r}
-clientes_sd <- apply(clientes[, -c(1)], 2, sd)
-clientes_sd
+apply(clientes_std[, -c(1)
+                   ], 2, var)
+
 ```
+
+Calculamos la desviacion de los datos estandarizados:
+```{r}
+means = apply(clientes_std[, -c(1)
+                           ], 2, mean)
+
+means
+```
+
+Para encontrar los outliers basta con saber cuales superan de maginutud 4 veces la media de cada variable
 
 ```{r}
-clientes[ which(clientes$INGRESOS < 'F'
-& mydata$age > 65)
+indicesAQuitarNuevos <- which( abs(clientes_std$PRECIO_DISPOSITIVO)
+                               > means["PRECIO_DISPOSITIVO"] + 4)
+
+clientes_std[indicesAQuitarNuevos,]
+```
+
+Puede que un cliente sea excepcional en varias variables, por lo que no queremos eliminar de nuestro análisis más clientes de lo necesario. Vamos a analizar entonces variable por variable los clientes excepcionales y a guardar sus índices en el dataframe progresivamente, para poder eliminarlos al final.
+
+
+```{r}
+indicesAQuitar <- NULL 
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+
+indicesAQuitarNuevos <- which( abs(clientes_std$INGRESOS)
+                               > means["INGRESOS"] + 4)
+
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+
+indicesAQuitarNuevos <- which( abs(clientes_std$CASA)
+                               > means["CASA"] + 4)
+
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+
+indicesAQuitarNuevos <- which( abs(clientes_std$MESES)
+                               > means["MESES"] + 4)
+
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+
+indicesAQuitarNuevos <- which( abs(clientes_std$DURACION)
+                               > means["DURACION"] + 4)
+
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+indicesAQuitarNuevos <- which( abs(clientes_std$SOBRECARGO)
+                               > means["SOBRECARGO"] + 4)
+
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+
+indicesAQuitarNuevos <- which( abs(clientes_std$SALDO_RESTANTE)
+                               > means["SALDO_RESTANTE"] + 4)
+
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+
+indicesAQuitarNuevos <- which( abs(clientes_std$SATISFACCION)
+                               > means["SATISFACCION"] + 4)
+
+indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
+
+
+length(indicesAQuitar)
+
+
+```
+
+Hay en total 4 clientes que serán ignorados por el análisis, todos atipicios en la variable PRECIO_DISPOSITIVO:
+```{r}
+clientes_std = clientes_std[-indicesAQuitar,]
 ```
 
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+### 3. Analice la correlación entre las variables y explique lo que puede implicar desde el punto de vista de PCA. (0.2)
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+```{r}
+corMat <- cor(clientes_std[, -c(1)
+                           ])
+
+corrplot(corMat, type="upper", order="hclust")
+
+```
+
+Se ve una fuere correlacion entre SOBRECARGO-SATISFACCION, INGRESOS-SALDO_RESTANTE
+Una correlacion moderada entre CASA-INGRESOS-SALDO_RESTANTE
+Una correlacion debile entre INGRESOS-DURACION
+
+Esto puede implicar que con solo 2 o 3(de 7)
+componentes principales se pueda tene un modelo con poca perdida de información.
+
+### 4. Debe entrenar 3 tipos de modelos predictivos de diferentes familias:
+
+#### a. Defina el protocolo de evaluación que va a utilizar para calibrar los modelos y estimar la calidad del modelo final. (0.3)
+
+
+
