@@ -24,63 +24,40 @@ Cree un modelo predictivo de deserción que permita identificar los clientes pro
 
 ```{r}
 library(ggplot2)
-
 library(caret)
-
 library(corrplot)
-
 library(fpc)
-
 library(cluster)
-
 library("factoextra")
-
 library(data.table)
-
 ```
 
 ```{r}
-clientes <- data.frame(read.csv("PF-02-DatosTelco.csv", header = TRUE)
-                       )
-
+clientes <- data.frame(read.csv("PF-02-DatosTelco.csv", header = TRUE))
 head(clientes)
-
 ```
 
 Vamos a analizar entonces las variables numéricas para evaluar que tipo de preprocesamientos debemos hacer para no influenciar de manera inadecuada los análisis que realizaremos.
 ```{r}
 str(clientes)
-
 summary(clientes)
+apply(clientes[, -c(1)], 2, mean)
 
-apply(clientes[, -c(1)
-               ], 2, mean)
-
-apply(clientes[, -c(1)
-               ], 2, var)
-
+apply(clientes[, -c(1)], 2, var)
 ```
 
 Podemos ver que las variables tienen promedios muy diferentes, que impedirán a los algoritmos de clustering (basados en distancia)
 encontrar estructuras adecuadas. Además, podemos ver también que las varianzas son muy diferentes, lo que influenciaría negativamente la búsqueda de los componente principales de PCA, que se basa en la dispersión de los datos. Vamos entonces a estandarizar los datos para arreglar estos problemas.
 
 ```{r}
-modelo_std<- preProcess(clientes, method = c("center", "scale")
-                        )
-
+modelo_std<- preProcess(clientes, method = c("center", "scale"))
 clientes_std <- predict(modelo_std, clientes)
-
 head(clientes_std)
-
 ```
 
 
 ```{r}
-ggplot(stack(clientes_std)
-       , aes(x = ind, y = values)
-       )
-+ geom_boxplot(aes(fill=ind)
-                                                                     )
+ggplot(stack(clientes_std), aes(x = ind, y = values)) + geom_boxplot(aes(fill=ind))
 
 ```
 Podemos ver que en las variables CASA, PRECIO_DISPOSITIVO y MESES presentan valores atipicios.
@@ -91,25 +68,19 @@ Podemos ver que en las variables CASA, PRECIO_DISPOSITIVO y MESES presentan valo
 Como todos los datos estan estandarizados, su varianza es 1:
 
 ```{r}
-apply(clientes_std[, -c(1)
-                   ], 2, var)
-
+apply(clientes_std[, -c(1)], 2, var)
 ```
 
 Calculamos la desviacion de los datos estandarizados:
 ```{r}
-means = apply(clientes_std[, -c(1)
-                           ], 2, mean)
-
+means = apply(clientes_std[, -c(1)], 2, mean)
 means
 ```
 
 Para encontrar los outliers basta con saber cuales superan de maginutud 4 veces la media de cada variable
 
 ```{r}
-indicesAQuitarNuevos <- which( abs(clientes_std$PRECIO_DISPOSITIVO)
-                               > means["PRECIO_DISPOSITIVO"] + 4)
-
+indicesAQuitarNuevos <- which( abs(clientes_std$PRECIO_DISPOSITIVO) > means["PRECIO_DISPOSITIVO"] + 4)
 clientes_std[indicesAQuitarNuevos,]
 ```
 
@@ -120,51 +91,30 @@ Puede que un cliente sea excepcional en varias variables, por lo que no queremos
 indicesAQuitar <- NULL 
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
 
-
-indicesAQuitarNuevos <- which( abs(clientes_std$INGRESOS)
-                               > means["INGRESOS"] + 4)
-
+indicesAQuitarNuevos <- which( abs(clientes_std$INGRESOS) > means["INGRESOS"] + 4)
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
 
 
-indicesAQuitarNuevos <- which( abs(clientes_std$CASA)
-                               > means["CASA"] + 4)
-
+indicesAQuitarNuevos <- which( abs(clientes_std$CASA) > means["CASA"] + 4)
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
 
-
-indicesAQuitarNuevos <- which( abs(clientes_std$MESES)
-                               > means["MESES"] + 4)
+indicesAQuitarNuevos <- which( abs(clientes_std$MESES)> means["MESES"] + 4)
 
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
-
-
-indicesAQuitarNuevos <- which( abs(clientes_std$DURACION)
-                               > means["DURACION"] + 4)
+indicesAQuitarNuevos <- which( abs(clientes_std$DURACION) > means["DURACION"] + 4)
 
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
-
-indicesAQuitarNuevos <- which( abs(clientes_std$SOBRECARGO)
-                               > means["SOBRECARGO"] + 4)
+indicesAQuitarNuevos <- which( abs(clientes_std$SOBRECARGO) > means["SOBRECARGO"] + 4)
 
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
-
-
-indicesAQuitarNuevos <- which( abs(clientes_std$SALDO_RESTANTE)
-                               > means["SALDO_RESTANTE"] + 4)
+indicesAQuitarNuevos <- which( abs(clientes_std$SALDO_RESTANTE) > means["SALDO_RESTANTE"] + 4)
 
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
-
-
-indicesAQuitarNuevos <- which( abs(clientes_std$SATISFACCION)
-                               > means["SATISFACCION"] + 4)
+indicesAQuitarNuevos <- which( abs(clientes_std$SATISFACCION) > means["SATISFACCION"] + 4)
 
 indicesAQuitar <- union(indicesAQuitar, indicesAQuitarNuevos)
-
 
 length(indicesAQuitar)
-
-
 ```
 
 Hay en total 4 clientes que serán ignorados por el análisis, todos atipicios en la variable PRECIO_DISPOSITIVO:
@@ -177,9 +127,7 @@ clientes_std = clientes_std[-indicesAQuitar,]
 
 
 ```{r}
-corMat <- cor(clientes_std[, -c(1)
-                           ])
-
+corMat <- cor(clientes_std[, -c(1)])
 corrplot(corMat, type="upper", order="hclust")
 
 ```
